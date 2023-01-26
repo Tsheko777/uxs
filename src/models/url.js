@@ -1,5 +1,4 @@
 import axios from "axios"
-import { redirect } from "react-router-dom";
 
 export const FetchURL = async (id) => {
     const api = process.env.REACT_APP_API + "/api/geturl"
