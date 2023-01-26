@@ -13,10 +13,9 @@ export const FetchURL = async (id) => {
     }
 }
 
-export const PostURL = async (url, setUrl, uri) => {
+export const PostURL = async (url, uri) => {
     const api = process.env.REACT_APP_API + "/api/newurl"
     let response = await axios.post(api, { url: url })
-    await setUrl(prev => response.data)
     uri.value = 'https://' + window.location.host + "/" + response.data.id
     document.getElementById('newUrl').classList.add("d-none");
     document.getElementById('urlResult').classList.remove("d-none");

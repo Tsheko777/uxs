@@ -7,15 +7,13 @@ import { BsClipboardCheck } from 'react-icons/bs'
 export const Header = () => {
     new ClipboardJS('.clipboard');
 
-    const [url, setUrl] = useState()
-
     const NewURL = async () => {
         const userInput = document.getElementById('url');
         const error = document.getElementById('error');
         const uri = document.getElementById('res');
 
         if (ValidateURL(userInput.value) === true) {
-            await PostURL(userInput.value, setUrl, uri)
+            await PostURL(userInput.value, uri)
             document.getElementById('url').style.border = 'unset'
             error.innerHTML = ''
         }
