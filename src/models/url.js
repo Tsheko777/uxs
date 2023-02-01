@@ -16,7 +16,11 @@ export const FetchURL = async (id) => {
 export const PostURL = async (url, uri) => {
     const api = process.env.REACT_APP_API + "/api/newurl"
     let response = await axios.post(api, { url: url })
-    uri.value = 'https://' + window.location.host + "/" + response.data.id
-    document.getElementById('newUrl').classList.add("d-none");
-    document.getElementById('urlResult').classList.remove("d-none");
+    if (response) {
+        uri.value = 'https://' + window.location.host + "/" + response.data.id
+        document.getElementById('loading').classList.add('d-none')
+        document.getElementById('loading').classList.remove('d-block')
+        document.getElementById('newUrl').classList.add("d-none");
+        document.getElementById('urlResult').classList.remove("d-none");
+    }
 }

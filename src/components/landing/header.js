@@ -1,8 +1,8 @@
 import { ValidateURL } from '../../models/validateURL'
 import { PostURL } from '../../models/url'
-import { useState } from 'react'
 import ClipboardJS from 'clipboard'
 import { BsClipboardCheck } from 'react-icons/bs'
+import { Spinner } from '../spinner'
 
 export const Header = () => {
     new ClipboardJS('.clipboard');
@@ -13,9 +13,12 @@ export const Header = () => {
         const uri = document.getElementById('res');
 
         if (ValidateURL(userInput.value) === true) {
-            await PostURL(userInput.value, uri)
+            document.getElementById('loading').classList.remove('d-none')
+            document.getElementById('loading').classList.add('d-block')
+            document.getElementById('newUrl').classList.add("d-none");
             document.getElementById('url').style.border = 'unset'
             error.innerHTML = ''
+            await PostURL(userInput.value, uri)
         }
 
         if (ValidateURL(userInput.value) === false) {
@@ -48,6 +51,8 @@ export const Header = () => {
                         <button data-clipboard-target='#res' className='btn clipboard shorten ms-md-2 mt-2 mt-md-0'><BsClipboardCheck size={20} color={'#fff'} /></button>
                     </div>
                 </div>
+
+                <Spinner />
 
                 <p className='mt-2' id='error'></p>
             </div>
