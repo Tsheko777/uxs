@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
+import { Redirect } from './views/redirect';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './views/error'
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/:id",
-    element: <App />,
+    element: <Redirect />,
     errorElement: <ErrorPage />,
   },
   {
